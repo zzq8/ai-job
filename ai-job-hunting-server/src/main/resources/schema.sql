@@ -153,3 +153,10 @@ create table ai_job.user_trial
 )
     comment '用户试用表';
 
+-- 本地开发：给 user_id=1 开通全部产品能力，有效期视为无限（is_active 必须为 b'1'，逻辑删除字段）
+insert into ai_job.user_product (user_id, order_id, product_id, product_type,
+                                 period_of_validity_start_time, period_of_validity_end_time,
+                                 is_active, created_id, created_date, updated_id, updated_date)
+values (1, 0, 3, '[1,2,3,4,5,6,7,8,9,101,102]',
+        '2020-01-01 00:00:00', '2099-12-31 23:59:59',
+        b'1', 1, now(), 1, now());
